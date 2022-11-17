@@ -4,7 +4,6 @@ import Carousel from './Carousel'
 import HorizontalScroll from './HorizontalScroll'
 import Cta from './Cta'
 
-
 const PreviewSection = ({ defaultConfig }) => {
 
     const getSelection = (payload, key) => {

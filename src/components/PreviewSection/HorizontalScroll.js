@@ -1,6 +1,6 @@
 import React from 'react'
 
-const HorizontalScroll = ({ width = 360, height = 360, payload }) => {
+const HorizontalScroll = ({ width = 360, height = 360, payload, id }) => {
     const imgUrls = payload?.assets?.length ? payload?.assets : payload?.default
 
     const redirectHandler = (redirectUrl) => {
@@ -11,7 +11,10 @@ const HorizontalScroll = ({ width = 360, height = 360, payload }) => {
         <div style={{ width: `${360}px`, height: `${height}px`, overflowX: 'scroll' }} className="flex">
             {
                 imgUrls.map((url, index) => {
-                    return <img src={url} alt='' style={{ width: `${width}px`, height: `${height}px` }} className="mr-12" key={index} onClick={() => redirectHandler(payload?.redirectUrls?.[index])} />
+                    return <img
+                        src={url} alt='' id={`${index}${id}`} style={{ width: `${width}px`, height: `${height}px` }} className="mr-12" key={index} onClick={() => redirectHandler(payload?.redirectUrls?.[index])}
+                        data-lp={`${payload?.redirectUrls?.[index]}` || ""}
+                    />
                 })
             }
         </div>

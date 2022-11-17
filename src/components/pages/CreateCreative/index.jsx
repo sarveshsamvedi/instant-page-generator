@@ -14,21 +14,53 @@ const CreateCreative = (props) => {
 	const [existingInstantPageId, setInstantPageId] = useState(null);
 
 	useEffect(() => {
-        if (localStorage.getItem('payload')) setConfig(JSON.parse(localStorage.getItem('payload')))
-        if (localStorage.getItem('instantPageId')) setInstantPageId(localStorage.getItem('instantPageId'))
-    }, [])
+		if (localStorage.getItem('payload')) setConfig(JSON.parse(localStorage.getItem('payload')))
+		if (localStorage.getItem('instantPageId')) setInstantPageId(localStorage.getItem('instantPageId'))
+	}, [])
+
+	const getAllElmsIds = () => {
+		const allIds = []
+		config.forEach((elm, index) => {
+			if (elm.type === 'horizontalScroll-2:1') {
+				elm.assets.forEach((e, ind) => {
+					allIds.push(`${ind}${index}_${elm.type}`)
+				})
+			} else {
+				allIds.push(`${index}_${elm.type}`)
+			}
+		})
+		return allIds
+	}
 
 	const getEncodedCreativeHtml = () => {
+		const allElmsIds = JSON.stringify(getAllElmsIds())
 		const htmlStr = document.getElementById("instant-page").outerHTML;
 		const outputHtml = `
-				 <html><head><meta http-equiv="content-type" content="text/html; charset=utf-8">
-				 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-				 <script src="https://cdn.tailwindcss.com"></script>
-				 </head>
-				 <body>
-					 ${htmlStr}
-				 </body>
-				 </html>`;
+		<html><head><meta http-equiv="content-type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script src="https://cdn.tailwindcss.com"></script>
+		</head>
+		<body>
+		${htmlStr}
+		<script>
+        const listOfIds = ${allElmsIds}
+        function attachEventListners() {
+            listOfIds.forEach(id => {
+                const elm = document.getElementById(id)
+                if (elm.dataset.lp && elm.dataset.lp !== "" && elm.dataset.lp !== "undefined") {
+                    elm.addEventListener('click', function () {
+                        window.open(elm.dataset.lp, '_blank')
+                    })
+                }
+            })
+        }
+        document.addEventListener('DOMContentLoaded', function () {
+            attachEventListners()
+        })
+    </script>
+		</body>
+		</html>`;
+		console.log('outputHtml: ', outputHtml);
 		return getEncodedBase64String(outputHtml);
 	};
 
@@ -103,7 +135,6 @@ const CreateCreative = (props) => {
 
 	return (
 		<div className="flex">
-			<Link to="/" className="mt-[50px]"><Button>Home</Button></Link>
 			<div className="leftPanel w-[70%]">
 				<Link to="/" className="ml-4 !mt-4"><Button>Home</Button></Link>
 				<LeftMenu

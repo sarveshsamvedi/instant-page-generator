@@ -22,7 +22,7 @@ const Image = ({ width = 340, height = 50, payload }) => {
                 justifyContent: 'center',
                 borderRadius: '6px'
             }}>
-                {payload.value !== "" ? payload.value : payload.default}
+                {payload.ctaText !== "" ? payload.ctaText : payload.default}
             </div>
         </div>
     )

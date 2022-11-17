@@ -19,7 +19,7 @@ const Home = () => {
       <div className="flex overflow-x-scroll">
         {
           currIds?.length > 0 && currIds.map((id, index) => {
-            return <InstantPage instantPageId={id} key={id} editVisible={true} />
+            return <InstantPage instantPageId={id} key={id} />
           })
         }
       </div>

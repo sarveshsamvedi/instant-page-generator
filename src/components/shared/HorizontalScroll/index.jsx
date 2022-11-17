@@ -29,8 +29,8 @@ const HorizontalScroll = ({ updateConfig, type, sectionKey }) => {
         options={getItems(horizontalScrollPictureCounts)}
       />
 
-      {[...Array(imageCount)].map((section, index) => (
-        <ImageUpload />
+      {imageCount > 0 && [...Array(imageCount)].map((element, index) => (
+        <ImageUpload updateConfig={updateConfig} type={type} sectionKey={sectionKey} assetKey={index} className="mt-5" />
       ))}
     </>
   );

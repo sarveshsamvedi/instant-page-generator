@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
+import { Link } from "react-router-dom";
+import { Button } from "antd";
 import PreviewSection from '../../PreviewSection'
 import { serviceHelper } from "../../../utils/serviceHelper";
 
-const InstantPage = ({ instantPageId }) => {
+const InstantPage = ({ instantPageId, editVisible }) => {
     const [config, setConfig] = useState(null)
 
     useEffect(() => {
@@ -18,6 +20,9 @@ const InstantPage = ({ instantPageId }) => {
         <div>
             {
                 config && <PreviewSection defaultConfig={config} />
+            }
+            {
+                config && editVisible && <Link to="create-creative" className="mt-12 ml-12"><Button>EDIT</Button></Link>
             }
         </div>
     )

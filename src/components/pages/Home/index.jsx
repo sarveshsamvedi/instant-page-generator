@@ -12,17 +12,16 @@ const Home = () => {
   }, [])
 
   return (
-    <>
-      <div>Home route</div>
-      <div className="flex">
+    <div className="mt-2">
+      <Link to="create-creative" className="mt-12 ml-12"><Button>Create</Button></Link>
+      <div className="flex overflow-x-scroll">
         {
-          currIds.length > 0 && currIds.map((id, index) => {
-            return <InstantPage instantPageId={id} key={id} />
+          currIds?.length > 0 && currIds.map((id, index) => {
+            return <InstantPage instantPageId={id} key={id} editVisible={true} />
           })
         }
-        <Link to="create-creative" className="mt-12"><Button>Create</Button></Link>
       </div>
-    </>
+    </div>
   );
 };
 

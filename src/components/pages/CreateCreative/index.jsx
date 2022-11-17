@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Button } from 'antd';
+import { Link } from "react-router-dom";
 import cloneDeep from 'lodash/cloneDeep';
 import { v4 as uuidv4 } from 'uuid';
 import PreviewSection from "../../PreviewSection";
@@ -22,8 +23,8 @@ const CreateCreative = () => {
 					 ${htmlStr}
 				 </body>
 				 </html>`;
-        return getEncodedBase64String(outputHtml);
-  };
+		return getEncodedBase64String(outputHtml);
+	};
 
 	const uploadHtml = () => {
 		const html = getEncodedCreativeHtml();
@@ -70,7 +71,7 @@ const CreateCreative = () => {
 			default:
 				break
 		}
-    console.log(newConfig);
+		console.log(newConfig);
 		setConfig(newConfig)
 	}
 
@@ -96,6 +97,7 @@ const CreateCreative = () => {
 
 	return (
 		<div className="flex">
+			<Link to="/" className="mt-[50px]"><Button>Home</Button></Link>
 			<div className="leftPanel w-[70%]">
 				<LeftMenu
 					updateConfig={updateConfig}

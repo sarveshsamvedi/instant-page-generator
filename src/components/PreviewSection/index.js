@@ -23,7 +23,7 @@ const PreviewSection = ({ defaultConfig }) => {
             default:
                 return null
         }
-    }    
+    }
 
     return (
         <div className='w-[362px] h-[700px] border-solid border border-gray-400 rounded-lg m-[50px]' id="html-preview">
@@ -31,7 +31,7 @@ const PreviewSection = ({ defaultConfig }) => {
                 {
                     defaultConfig.map((section, index) => {
                         return (
-                            <div className='mb-8'>{getSelection(section, index)}</div>
+                            <div className='mb-8' key={index}>{getSelection(section, index)}</div>
                         )
                     })
                 }

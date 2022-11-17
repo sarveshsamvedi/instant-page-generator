@@ -32,8 +32,11 @@ const CreateCreative = (props) => {
 		return allIds
 	}
 
-	const getEncodedCreativeHtml = () => {
+	const getEncodedCreativeHtml = (instantPageId) => {
 		const allElmsIds = JSON.stringify(getAllElmsIds())
+		const instantId = JSON.stringify(instantPageId)
+		const domainNAme = 'https://8dfc-2405-201-300b-4aee-bd27-2aec-45f0-d739.in.ngrok.io'
+		const apiUrl = JSON.stringify(`${domainNAme}/api/event/${instantPageId}`)
 		const htmlStr = document.getElementById("instant-page").outerHTML;
 		const outputHtml = `
 		<html><head><meta http-equiv="content-type" content="text/html; charset=utf-8">
@@ -44,17 +47,37 @@ const CreateCreative = (props) => {
 		${htmlStr}
 		<script>
         const listOfIds = ${allElmsIds}
+		const instantPageId = ${instantId}
+		const apiUrl = ${apiUrl}
+        function sendEvent(eventName, data) {
+            const payload = {
+                eventName,
+                data
+            }
+            fetch(apiUrl, {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                method: "POST",
+                body: JSON.stringify(payload),
+            })
+        }
+
         function attachEventListners() {
             listOfIds.forEach(id => {
                 const elm = document.getElementById(id)
                 if (elm.dataset.lp && elm.dataset.lp !== "" && elm.dataset.lp !== "undefined") {
                     elm.addEventListener('click', function () {
+                        sendEvent("CLICK_EVENT", instantPageId)
+                        sendEvent("LP_URL", elm.dataset.lp)
                         window.open(elm.dataset.lp, '_blank')
                     })
                 }
             })
         }
+
         document.addEventListener('DOMContentLoaded', function () {
+            sendEvent("INSTANT_PAGE_VIEW", instantPageId)
             attachEventListners()
         })
     </script>
@@ -65,13 +88,13 @@ const CreateCreative = (props) => {
 	};
 
 	const uploadHtml = () => {
-		const html = getEncodedCreativeHtml();
+		const instantPageId = existingInstantPageId || uuidv4()
+		const html = getEncodedCreativeHtml(instantPageId);
 		serviceHelper
 			.post("api/upload-html", { data: html })
 			.then((data) => {
 				console.log('CDN URL', data.data.cdnUrl)
 				if (data.status) {
-					const instantPageId = existingInstantPageId || uuidv4()
 					serviceHelper
 						.post(`api/payload/${instantPageId}`, { payload: JSON.stringify(config) })
 						.then(data => {
@@ -92,7 +115,7 @@ const CreateCreative = (props) => {
 		switch (type) {
 			case 'image-1:1':
 			case 'image-3:2':
-				newConfig[position].assets[0] = value
+				newConfig[position][key][0] = value
 				break
 			case 'horizontalScroll-2:1':
 				newConfig[position][key][assetPosition] = value

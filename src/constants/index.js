@@ -29,7 +29,7 @@ export const defaultConfig = [
       color: "",
     },
     default: "Go to Website",
-    redirectUrls: [],
+    redirectUrls: ["CTA Click URL"],
     ctaText: "",
   },
   // {

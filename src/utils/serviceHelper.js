@@ -1,6 +1,6 @@
-const host = "http://8410-34-93-21-216.ngrok.io/";
+export const host = "http://8410-34-93-21-216.ngrok.io/";
 
-function get(serviceUrl) {
+const get = (serviceUrl) => {
   return fetch(host + serviceUrl, {
     headers: {
       method: "GET",
@@ -13,7 +13,7 @@ function get(serviceUrl) {
   });
 }
 
-function post(serviceUrl, requestData) {
+const post = (serviceUrl, requestData) => {
   return fetch(host + serviceUrl, {
     headers: {
       "Content-Type": "application/json",

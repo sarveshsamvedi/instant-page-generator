@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Select } from "antd";
 import { horizontalScrollPictureCounts } from "../../../constants";
 import ImageUpload from "../ImageUpload";
@@ -21,9 +21,10 @@ const HorizontalScroll = ({ updateConfig, type, sectionKey, config }) => {
 
   return (
     <>
+      <label className="text-gray-500">Select number of images:</label>
       <Select
         className="w-[30%] block mb-4"
-        placeholder="Select number of images"
+        placeholder="Number of images"
         style={{ width: 120 }}
         onChange={changeImageCount}
         options={getItems(horizontalScrollPictureCounts)}

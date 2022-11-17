@@ -15,6 +15,7 @@ const Sections = ({ updateConfig, updateSection, sectionKey, config }) => {
 
   return (
     <>
+      <label className="text-gray-500">Select segment type:</label>
       <Select
         className="w-[30%] block mb-4"
         placeholder="Select type"

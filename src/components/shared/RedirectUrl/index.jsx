@@ -8,7 +8,7 @@ const RedirectUrl = ({ updateConfig, type, sectionKey, assetKey = 0, config }) =
   };
 
   return (
-    <div className="mb-2 ml-4">
+    <div className="mb-2">
       <Input
         className="w-auto"
         placeholder="Enter redirection link"

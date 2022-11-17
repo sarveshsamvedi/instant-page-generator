@@ -3,7 +3,7 @@ import React from 'react';
 import RedirectUrl from '../shared/RedirectUrl';
 
 const CtaConfig = ({config = {}, updateConfig, sectionKey}) => {
-    const ctaText = config?.default || "", redirectionUrl = config?.redirectUrls[0] || "", ctaColor = config?.config?.color || "";
+    const ctaText = config?.ctaText || "", ctaColor = config?.config?.color || "";
 
     const ctaTextOnChange = (e) => {
         const curValue = e.target.value;
@@ -20,17 +20,20 @@ const CtaConfig = ({config = {}, updateConfig, sectionKey}) => {
     };
 
     return (
-        <div className=''>
-            <div style={{padding: "1vw", width: "auto"}}>
-                <label>CTA Text: </label>
+        <div className='w-[30%] block mb-4'>
+            <div className="mb-4 w-auto">
+                <label className="text-gray-500">CTA Text: </label>
                 <Input id="ctaText" placeholder="CTA text" onChange={ctaTextOnChange} defaultValue={ctaText}/>
             </div>
             
-            <div style={{padding: "1vw", width: "auto"}}>
-                <label>CTA Color: </label>
+            <div className="mb-4 w-auto">
+                <label className="text-gray-500 block">CTA Color: </label>
                 <input type="color" id="favcolor" name="favcolor" onChange={ctaColorOnChange} defaultValue={ctaColor}/>
             </div>
-            <RedirectUrl updateConfig={updateConfig} type="cta" sectionKey={sectionKey} config={config}/>
+            <div>
+                <label className="text-gray-500">Enter redirection link:</label>
+                <RedirectUrl updateConfig={updateConfig} type="cta" sectionKey={sectionKey} config={config}/>
+            </div>
         </div>                    
     );
 }

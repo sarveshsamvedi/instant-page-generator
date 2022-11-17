@@ -36,7 +36,7 @@ const LeftMenu = ({ updateConfig, updateSection, changeSectionCount, config, exi
         value={sections}
         options={getSectionsItems(sectionsList)}
       />
-      <Collapse defaultActiveKey={["0"]} className="mt-5 overflow-y-auto overflow-x-hidden" style={{height: "calc(100vh - 200px)"}}>
+      <Collapse accordion defaultActiveKey={["0"]} className="mt-5 overflow-y-auto overflow-x-hidden" style={{height: "calc(100vh - 200px)"}}>
         {sections &&
           [...Array(sections)].map((section, index) => (
             <Panel header={`Section ${index + 1}`} key={index}>

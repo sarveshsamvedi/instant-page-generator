@@ -2,7 +2,6 @@ import { UploadOutlined } from "@ant-design/icons";
 import { Button, Upload, message } from "antd";
 import { host } from "../../../utils/serviceHelper";
 import RedirectUrl from "../RedirectUrl";
-import { useEffect } from "react";
 
 const ImageUpload = ({ updateConfig, type, sectionKey, assetKey = 0, config }) => {
   const props = {
@@ -31,7 +30,7 @@ const ImageUpload = ({ updateConfig, type, sectionKey, assetKey = 0, config }) =
 
   return (
     <div className="flex flex-row">
-      <Upload {...props}>
+      <Upload {...props} maxCount={1} className="mr-4">
         <Button icon={<UploadOutlined />}>Click to Upload</Button>
       </Upload>
       <RedirectUrl updateConfig={updateConfig} type={type} sectionKey={sectionKey} assetKey={assetKey} config={config}/>

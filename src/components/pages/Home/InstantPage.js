@@ -16,13 +16,18 @@ const InstantPage = ({ instantPageId, editVisible }) => {
             }, [])
     })
 
+    const editHandler = () => {
+        localStorage.setItem('payload', JSON.stringify(config))
+        localStorage.setItem('instantPageId', instantPageId)
+    }
+
     return (
         <div>
             {
                 config && <PreviewSection defaultConfig={config} />
             }
             {
-                config && editVisible && <Link to="create-creative" className="mt-12 ml-12"><Button>EDIT</Button></Link>
+                config && editVisible && <Link to="create-creative" className="mt-12 ml-12"><Button onClick={editHandler}>EDIT</Button></Link>
             }
         </div>
     )

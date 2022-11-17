@@ -80,9 +80,53 @@ const CreateCreative = (props) => {
             sendEvent("INSTANT_PAGE_VIEW", instantPageId)
             attachEventListners()
         })
-    </script>
-		</body>
-		</html>`;
+		</script>
+            </html>
+            <script>
+            //div
+                convertToVwByType('div');
+                
+                //img
+                convertToVwByType('img');
+                
+                //button
+                convertToVwByType('button');
+                
+                //li
+                convertToVwByType('li');
+                                
+                function convertToVwByType(type){
+                    //type -> div, button, img
+                    const allElem = document.querySelectorAll(type);
+        
+                    if(!allElem || allElem.length==0)
+                            return;
+                
+                    allElem.forEach((curElem)=>{
+                        convertPxStylesToVw(curElem);
+                    });
+                }                
+                
+                function convertPxStylesToVw(element){
+                    const computedStyles = getComputedStyle(element);
+                
+                    Object.keys(computedStyles).forEach((cur)=>{
+                        const curValue = computedStyles[cur];
+                        if(curValue.slice(-2) === 'px'){
+                            const pxValue = (Number)(curValue.substring(0, curValue.length-2));
+                            const vwValue = convertPXToVW(pxValue);
+                
+                            element.style[cur] = vwValue+"vw";
+                
+                        }
+                    });
+                
+                }                
+                function convertPXToVW(px) {
+                    return px/3.6;
+                }
+           </script>
+		`;
 		console.log('outputHtml: ', outputHtml);
 		return getEncodedBase64String(outputHtml);
 	};

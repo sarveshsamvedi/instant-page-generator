@@ -1,50 +1,53 @@
-import { Collapse } from 'antd';
-import React, {useState} from 'react';
-import DropDown from '../shared/DropDown';
-import ImageUpload from '../shared/ImageUpload';
+import { Collapse } from "antd";
+import React, { useState } from "react";
+import DropDown from "../shared/DropDown";
+import ImageUpload from "../shared/ImageUpload";
+import { sectionsList, sectionTypes } from "../../constants";
+import Sections from "../shared/Sections";
+
+import { Select } from "antd";
+
+const getSectionsItems = (items) => {
+  return items.map((item, index) => {
+    return {
+      label: `${item} sections`,
+      value: item,
+    };
+  });
+};
 const { Panel } = Collapse;
 
-const text = `
-  A dog is a type of domesticated animal.
-  Known for its loyalty and faithfulness,
-  it can be found as a welcome guest in many households across the world.
-`;
+const LeftMenu = ({ updateConfig, updateSection, changeSectionCount }) => {
+  const [sections, setSections] = useState();
 
-const getDropDownItems = (items) => {
-  return items.map((item, index)=>{
-      return {
-          label: (
-              <button>{item}</button>
-          ),
-          key: index,
-      }
-  });
-}
-
-const LeftMenu = ({updateConfig}) => {
-  const [sections, setSections] = useState(3);
-
-  const onChange = (key) => {
-    console.log(key);
+  const handleChange = (value) => {
+    setSections(value);
+    changeSectionCount(value);
   };
 
-  
   return (
-    <>
-    <ImageUpload updateConfig={updateConfig}/>
-      <DropDown items={getDropDownItems([1, 2, 3, 4])}/>
-      <Collapse defaultActiveKey={['1']} onChange={onChange}>
-        <Panel header="This is panel header 1" key="1">
-          <p>{text}</p>
-        </Panel>
-        <Panel header="This is panel header 2" key="2">
-          <p>{text}</p>
-        </Panel>
-        <Panel header="This is panel header 3" key="3">
-          <p>{text}</p>
-        </Panel>
+    <div className="w-[70%] p-4 mt-[50px]">
+      <Select
+        className="w-[30%]"
+        placeholder="Select number of sections"
+        style={{ width: 120 }}
+        onChange={handleChange}
+        options={getSectionsItems(sectionsList)}
+      />
+      <Collapse defaultActiveKey={["0"]} className="mt-5">
+        {sections &&
+          [...Array(sections)].map((section, index) => (
+            <Panel header={`Section ${index + 1}`} key={index}>
+              <Sections
+                updateConfig={updateConfig}
+                sectionKey={index}
+                updateSection={updateSection}
+              />
+            </Panel>
+          ))}
       </Collapse>
-    </>    
+    </div>
   );
 };
+
 export default LeftMenu;

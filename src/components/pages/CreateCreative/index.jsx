@@ -14,7 +14,6 @@ const CreateCreative = (props) => {
 	const [existingInstantPageId, setInstantPageId] = useState(null);
 
 	useEffect(() => {
-		console.log('JSON.parse ', localStorage.getItem('payload'), JSON.parse(localStorage.getItem('payload')));
 		setConfig(JSON.parse(localStorage.getItem('payload')))
 		setInstantPageId(localStorage.getItem('instantPageId'))
 	}, [])
@@ -104,6 +103,7 @@ const CreateCreative = (props) => {
 
 	return (
 		<div className="flex">
+			<Link to="/" className="mt-[50px]"><Button>Home</Button></Link>
 			<div className="leftPanel w-[70%]">
 				<Link to="/" className="ml-4 !mt-4"><Button>Home</Button></Link>
 				<LeftMenu

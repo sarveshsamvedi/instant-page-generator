@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Image from './Image'
 import Carousel from './Carousel'
 import HorizontalScroll from './HorizontalScroll'
 import Cta from './Cta'
+
 
 const PreviewSection = ({ defaultConfig }) => {
 
@@ -23,10 +24,10 @@ const PreviewSection = ({ defaultConfig }) => {
             default:
                 return null
         }
-    }
+    }    
 
     return (
-        <div className='w-[362px] h-[700px] border-solid border border-gray-400 rounded-lg m-[50px]'>
+        <div className='w-[362px] h-[700px] border-solid border border-gray-400 rounded-lg m-[50px]' id="html-preview">
             <div id='instant-page' className='w-full h-full overflow-y-auto overflow-x-hidden'>
                 {
                     defaultConfig.map((section, index) => {

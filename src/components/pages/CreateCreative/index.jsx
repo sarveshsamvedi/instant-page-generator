@@ -55,7 +55,7 @@ const CreateCreative = () => {
 			default:
 				break
 		}
-
+    console.log(newConfig);
 		setConfig(newConfig)
 	}
 
@@ -90,7 +90,7 @@ const CreateCreative = () => {
 				/>
 			</div>
 			<div className="rightPanel flex">
-				<PreviewSection defaultConfig={defaultConfig} />
+				<PreviewSection defaultConfig={config} />
 				<Button className="mt-[50px]" onClick={uploadHtml}>
 					UPLOAD
 				</Button>

@@ -5,7 +5,7 @@ import HorizontalScroll from './HorizontalScroll'
 import Cta from './Cta'
 
 const PreviewSection = ({ defaultConfig }) => {
-
+    console.log("in preview", defaultConfig)
     const getSelection = (payload, key) => {
         switch (payload.type) {
             case 'image-1:1':

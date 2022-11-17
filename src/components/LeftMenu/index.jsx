@@ -21,7 +21,7 @@ const getDropDownItems = (items) => {
   });
 }
 
-const LeftMenu = () => {
+const LeftMenu = ({updateConfig}) => {
   const [sections, setSections] = useState(3);
 
   const onChange = (key) => {
@@ -31,7 +31,7 @@ const LeftMenu = () => {
   
   return (
     <>
-    <ImageUpload />
+    <ImageUpload updateConfig={updateConfig}/>
       <DropDown items={getDropDownItems([1, 2, 3, 4])}/>
       <Collapse defaultActiveKey={['1']} onChange={onChange}>
         <Panel header="This is panel header 1" key="1">

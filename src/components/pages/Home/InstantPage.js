@@ -4,7 +4,7 @@ import { Button } from "antd";
 import PreviewSection from '../../PreviewSection'
 import { serviceHelper } from "../../../utils/serviceHelper";
 
-const InstantPage = ({ instantPageId, editVisible }) => {
+const InstantPage = ({ instantPageId }) => {
     const [config, setConfig] = useState(null)
 
     useEffect(() => {
@@ -14,7 +14,7 @@ const InstantPage = ({ instantPageId, editVisible }) => {
                 console.log('data: ', data.data);
                 setConfig(JSON.parse(data?.data))
             })
-    }, [])
+    }, [instantPageId])
 
     const editHandler = () => {
         localStorage.setItem('payload', JSON.stringify(config))
@@ -27,7 +27,7 @@ const InstantPage = ({ instantPageId, editVisible }) => {
                 config && <PreviewSection defaultConfig={config} />
             }
             {
-                config && editVisible && <Link to="create-creative" className="mt-12 ml-12"><Button onClick={editHandler}>EDIT</Button></Link>
+                config && <Link to="create-creative" className="mt-12 ml-12"><Button onClick={editHandler}>EDIT</Button></Link>
             }
         </div>
     )

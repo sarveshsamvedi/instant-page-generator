@@ -1,15 +1,17 @@
 import React from 'react'
 
-const Image = ({ width = 340, height = 50, payload }) => {
-    console.log(payload)
+const Image = ({ width = 340, height = 50, payload, id }) => {
+
     const bgColor = payload?.config?.color !== "" ? payload?.config?.color : 'black'
+
+    const lpUrl = payload?.redirectUrls?.[0] || ""
 
     const redirectHandler = (redirectUrl) => {
         if (redirectUrl && redirectUrl !== "") window.open(redirectUrl, '_blank')
     }
 
     return (
-        <div style={{ display: 'flex', justifyContent: 'center' }} onClick={() => redirectHandler(payload?.redirectUrls?.[0])}>
+        <div id={id} data-lp={lpUrl} style={{ display: 'flex', justifyContent: 'center' }} onClick={() => redirectHandler(payload?.redirectUrls?.[0])}>
             <div style={{
                 width: `${width}px`,
                 height: `${height}px`,

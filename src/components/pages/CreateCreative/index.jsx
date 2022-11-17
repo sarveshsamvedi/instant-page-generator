@@ -18,28 +18,83 @@ const CreateCreative = (props) => {
         if (localStorage.getItem('instantPageId')) setInstantPageId(localStorage.getItem('instantPageId'))
     }, [])
 
-	const getEncodedCreativeHtml = () => {
+	const getAllElmsIds = () => {
+		const allIds = []
+		config.forEach((elm, index) => {
+			if (elm.type === 'horizontalScroll-2:1') {
+				elm.assets.forEach((e, ind) => {
+					allIds.push(`${ind}${index}_${elm.type}`)
+				})
+			} else {
+				allIds.push(`${index}_${elm.type}`)
+			}
+		})
+		return allIds
+	}
+
+	const getEncodedCreativeHtml = (instantPageId) => {
+		const allElmsIds = JSON.stringify(getAllElmsIds())
+		const instantId = JSON.stringify(instantPageId)
+		const domainNAme = 'https://8dfc-2405-201-300b-4aee-bd27-2aec-45f0-d739.in.ngrok.io'
+		const apiUrl = JSON.stringify(`${domainNAme}/api/event/${instantPageId}`)
 		const htmlStr = document.getElementById("instant-page").outerHTML;
 		const outputHtml = `
-				 <html><head><meta http-equiv="content-type" content="text/html; charset=utf-8">
-				 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-				 <script src="https://cdn.tailwindcss.com"></script>
-				 </head>
-				 <body>
-					 ${htmlStr}
-				 </body>
-				 </html>`;
+		<html><head><meta http-equiv="content-type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script src="https://cdn.tailwindcss.com"></script>
+		</head>
+		<body>
+		${htmlStr}
+		<script>
+        const listOfIds = ${allElmsIds}
+		const instantPageId = ${instantId}
+		const apiUrl = ${apiUrl}
+        function sendEvent(eventName, data) {
+            const payload = {
+                eventName,
+                data
+            }
+            fetch(apiUrl, {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                method: "POST",
+                body: JSON.stringify(payload),
+            })
+        }
+
+        function attachEventListners() {
+            listOfIds.forEach(id => {
+                const elm = document.getElementById(id)
+                if (elm.dataset.lp && elm.dataset.lp !== "" && elm.dataset.lp !== "undefined") {
+                    elm.addEventListener('click', function () {
+                        sendEvent("CLICK_EVENT", instantPageId)
+                        sendEvent("LP_URL", elm.dataset.lp)
+                        window.open(elm.dataset.lp, '_blank')
+                    })
+                }
+            })
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            sendEvent("INSTANT_PAGE_VIEW", instantPageId)
+            attachEventListners()
+        })
+    </script>
+		</body>
+		</html>`;
+		console.log('outputHtml: ', outputHtml);
 		return getEncodedBase64String(outputHtml);
 	};
 
 	const uploadHtml = () => {
-		const html = getEncodedCreativeHtml();
+		const instantPageId = existingInstantPageId || uuidv4()
+		const html = getEncodedCreativeHtml(instantPageId);
 		serviceHelper
 			.post("api/upload-html", { data: html })
 			.then((data) => {
 				console.log('CDN URL', data.data.cdnUrl)
 				if (data.status) {
-					const instantPageId = existingInstantPageId || uuidv4()
 					serviceHelper
 						.post(`api/payload/${instantPageId}`, { payload: JSON.stringify(config) })
 						.then(data => {
@@ -106,7 +161,6 @@ const CreateCreative = (props) => {
 
 	return (
 		<div className="flex">
-			<Link to="/" className="mt-[50px]"><Button>Home</Button></Link>
 			<div className="leftPanel w-[70%]">
 				<Link to="/" className="ml-4 !mt-4"><Button>Home</Button></Link>
 				<LeftMenu

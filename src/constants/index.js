@@ -29,7 +29,7 @@ export const defaultConfig = [
       color: "",
     },
     default: "Go to Website",
-    redirectUrls: [],
+    redirectUrls: ["CTA Click URL"],
     ctaText: "",
   },
   // {
@@ -115,10 +115,10 @@ export const sectionTypes = [
     label: "Call to Action",
     value: "cta",
   },
-//   {
-//     label: "Carousel",
-//     value: "carousel",
-//   },
+  //   {
+  //     label: "Carousel",
+  //     value: "carousel",
+  //   },
 ];
 
 export const horizontalScrollPictureCounts = [3, 4, 5];

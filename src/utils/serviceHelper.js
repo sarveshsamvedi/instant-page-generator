@@ -1,4 +1,4 @@
-export const host = "http://8410-34-93-21-216.ngrok.io/";
+export const host = "http://9f2c-34-93-21-216.ngrok.io/";
 
 const get = (serviceUrl) => {
   return fetch(host + serviceUrl, {

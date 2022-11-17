@@ -138,10 +138,7 @@ const CreateCreative = (props) => {
 
 	const updateSection = (newType, position = 0) => {
 		let newConfig = cloneDeep(config)
-		console.log(newConfig)
 		newConfig[position] = getDefaultSectionConfig[newType]
-
-		console.log("update section", newConfig)
 		setConfig(newConfig)
 	}
 

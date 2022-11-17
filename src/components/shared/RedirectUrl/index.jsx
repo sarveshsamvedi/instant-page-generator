@@ -1,7 +1,6 @@
 import { Input } from "antd";
 
 const RedirectUrl = ({ updateConfig, type, sectionKey, assetKey = 0, config }) => {
-  console.log("config",config)
   const onChange = (e) => {
     const curValue = e.target.value;
     if (!curValue) return;
@@ -15,7 +14,7 @@ const RedirectUrl = ({ updateConfig, type, sectionKey, assetKey = 0, config }) =
         placeholder="Enter redirection link"
         id="redirectionUrl"
         onChange={onChange}
-        defaultValue={config.redirectUrls[0]}
+        defaultValue={config?.redirectUrls[assetKey]}
       />
     </div>
   );

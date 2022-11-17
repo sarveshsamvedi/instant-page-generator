@@ -15,8 +15,6 @@ const getSectionsItems = (items) => {
 const { Panel } = Collapse;
 
 const LeftMenu = ({ updateConfig, updateSection, changeSectionCount, config, existingInstantPageId }) => {
-  console.log("config panel", config)
-  console.log("uuid", existingInstantPageId)
   const [sections, setSections] = useState();
 
   const handleChange = (value) => {
@@ -25,11 +23,8 @@ const LeftMenu = ({ updateConfig, updateSection, changeSectionCount, config, exi
   };
 
   useEffect(() => {
-   if(existingInstantPageId) {
-    setSections(config.length)
-    console.log("editFlow", existingInstantPageId)
-   }
-  }, [existingInstantPageId])
+    setSections(config?.length)
+  }, [config])
 
   return (
     <div className="w-[70%] p-4 mt-[50px]">
@@ -49,8 +44,7 @@ const LeftMenu = ({ updateConfig, updateSection, changeSectionCount, config, exi
                 updateConfig={updateConfig}
                 sectionKey={index}
                 updateSection={updateSection}
-                // config={config}
-                config={existingInstantPageId ? config[index] : null}
+                config={config[index]}
               />
             </Panel>
           ))}

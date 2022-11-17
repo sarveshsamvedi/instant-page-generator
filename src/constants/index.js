@@ -5,11 +5,6 @@ export const defaultConfig = [
         assets: []
     },
     {
-        type: 'image-3:4',
-        default: ['https://gamewall-pwa.sharechat.com/network/assets/speaker.PNG'],
-        assets: []
-    },
-    {
         type: 'carousel-1:1',
         config: {
             autoPlay: true
@@ -28,6 +23,11 @@ export const defaultConfig = [
             'https://gamewall-pwa.sharechat.com/network/assets/speaker.PNG',
             'https://gamewall-pwa.sharechat.com/network/assets/speaker.PNG',
         ],
+        assets: []
+    },
+    {
+        type: 'image-2:3',
+        default: ['https://gamewall-pwa.sharechat.com/network/assets/speaker.PNG'],
         assets: []
     },
     {

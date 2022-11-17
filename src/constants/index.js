@@ -2,7 +2,7 @@ export const defaultConfig = [
   {
     type: "image-1:1",
     default: ["https://gamewall-pwa.sharechat.com/network/assets/speaker.PNG"],
-    assets: [],
+    assets: ["https://gamewall-pwa.sharechat.com/network/assets/speaker.PNG"],
     redirectUrls: [
       "https://stackoverflow.com/questions/17711146/how-to-open-link-in-a-new-tab-in-html",
     ],
@@ -14,14 +14,22 @@ export const defaultConfig = [
       "https://gamewall-pwa.sharechat.com/network/assets/speaker.PNG",
       "https://gamewall-pwa.sharechat.com/network/assets/speaker.PNG",
     ],
-    assets: [],
-    redirectUrls: [],
+    assets: [
+      "https://gamewall-pwa.sharechat.com/network/assets/speaker.PNG",
+      "https://gamewall-pwa.sharechat.com/network/assets/speaker.PNG",
+      "https://gamewall-pwa.sharechat.com/network/assets/speaker.PNG",
+    ],
+    redirectUrls: [
+      "horizontalScroll ok1",
+      "horizontalScroll ok2",
+      "horizontalScroll ok3"
+    ],
   },
   {
     type: "image-3:2",
     default: ["https://gamewall-pwa.sharechat.com/network/assets/speaker.PNG"],
-    assets: [],
-    redirectUrls: [],
+    assets: ["https://gamewall-pwa.sharechat.com/network/assets/speaker.PNG"],
+    redirectUrls: ["3:2 Image"],
   },
   {
     type: "cta",
@@ -29,7 +37,7 @@ export const defaultConfig = [
       color: "",
     },
     default: "Go to Website",
-    redirectUrls: [],
+    redirectUrls: ["CTA Click URL"],
     ctaText: "",
   },
   // {
@@ -115,10 +123,10 @@ export const sectionTypes = [
     label: "Call to Action",
     value: "cta",
   },
-//   {
-//     label: "Carousel",
-//     value: "carousel",
-//   },
+  //   {
+  //     label: "Carousel",
+  //     value: "carousel",
+  //   },
 ];
 
 export const horizontalScrollPictureCounts = [3, 4, 5];

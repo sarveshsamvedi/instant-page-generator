@@ -48,7 +48,7 @@ const CreateCreative = () => {
 					newConfig[position].config[key] = value
 				} else if (key === 'ctaText') {
 					newConfig[position][key] = value
-				} else if (key === 'redirectUrls') {					
+				} else if (key === 'redirectUrls') {
 					newConfig[position][key][assetPosition] = value
 				}
 				break

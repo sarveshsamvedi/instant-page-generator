@@ -1,13 +1,12 @@
 import React from "react";
-import { Button } from 'antd';
+import { Button } from "antd";
 import PreviewSection from "../../PreviewSection";
 import LeftMenu from "../../LeftMenu";
 import { defaultConfig } from "../../../constants";
-import { Base64 } from "js-base64";
 import { serviceHelper } from "../../../utils/serviceHelper";
-import ReactDOMServer from "react-dom/server";
+import { getEncodedBase64String } from "../../../utils/helpers";
 
-const CreateCreative = () => {	
+const CreateCreative = () => {
   const getEncodedCreativeHtml = () => {
     const htmlStr = document.getElementById("instant-page").outerHTML;
     const outputHtml = `
@@ -19,7 +18,7 @@ const CreateCreative = () => {
 					 ${htmlStr}
 				 </body>
 				 </html>`;
-    return Base64.encode(outputHtml);
+    return getEncodedBase64String(outputHtml);
   };
 
   const uploadHtml = () => {
@@ -31,10 +30,10 @@ const CreateCreative = () => {
   return (
     <div className="flex">
       <div className="leftPanel">
-			<LeftMenu />
-			</div>
+        <LeftMenu />
+      </div>
       <div className="rightPanel flex">
-        <PreviewSection defaultConfig={defaultConfig}/>
+        <PreviewSection defaultConfig={defaultConfig} />
         <Button className="mt-[50px]" onClick={uploadHtml}>
           UPLOAD
         </Button>

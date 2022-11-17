@@ -1,6 +1,7 @@
 import { Collapse } from 'antd';
 import React, {useState} from 'react';
 import DropDown from '../shared/DropDown';
+import ImageUpload from '../shared/ImageUpload';
 const { Panel } = Collapse;
 
 const text = `
@@ -30,6 +31,7 @@ const LeftMenu = () => {
   
   return (
     <>
+    <ImageUpload />
       <DropDown items={getDropDownItems([1, 2, 3, 4])}/>
       <Collapse defaultActiveKey={['1']} onChange={onChange}>
         <Panel header="This is panel header 1" key="1">

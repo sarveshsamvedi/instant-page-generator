@@ -2,18 +2,17 @@ import { UploadOutlined } from "@ant-design/icons";
 import { Button, Upload, message } from "antd";
 import { host } from "../../../utils/serviceHelper";
 import RedirectUrl from "../RedirectUrl";
+import { useEffect } from "react";
 
-const ImageUpload = ({ updateConfig, type, sectionKey, assetKey = 0 }) => {
+const ImageUpload = ({ updateConfig, type, sectionKey, assetKey = 0, config }) => {
   const props = {
     name: "image",
     action: `${host}api/upload-image`,
     onChange(info) {
       if (info.file.status !== "uploading") {
-        console.log(info.file, info.fileList);
       }
       if (info.file.status === "done") {
         if (type === "horizontalScroll-2:1") {
-          console.log(assetKey);
           updateConfig(
             type,
             sectionKey,
@@ -35,7 +34,7 @@ const ImageUpload = ({ updateConfig, type, sectionKey, assetKey = 0 }) => {
       <Upload {...props}>
         <Button icon={<UploadOutlined />}>Click to Upload</Button>
       </Upload>
-      <RedirectUrl updateConfig={updateConfig} type={type} sectionKey={sectionKey} assetKey={assetKey} />
+      <RedirectUrl updateConfig={updateConfig} type={type} sectionKey={sectionKey} assetKey={assetKey} config={config}/>
     </div>
   );
 };

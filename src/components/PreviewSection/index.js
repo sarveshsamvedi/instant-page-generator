@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import Image from './Image'
 import Carousel from './Carousel'
 import HorizontalScroll from './HorizontalScroll'
+import Cta from './Cta'
 
 
 const PreviewSection = ({ defaultConfig }) => {
@@ -10,7 +11,7 @@ const PreviewSection = ({ defaultConfig }) => {
         switch (payload.type) {
             case 'image-1:1':
                 return <Image payload={payload} width={360} height={360} key={key} />
-            case 'image-2:3':
+            case 'image-3:2':
                 return <Image payload={payload} width={360} height={240} key={key} />
             case 'carousel-1:1':
                 return <Carousel payload={payload} width={360} height={360} key={key} />
@@ -18,6 +19,8 @@ const PreviewSection = ({ defaultConfig }) => {
                 return <Carousel payload={payload} width={360} height={480} key={key} />
             case 'horizontalScroll-2:1':
                 return <HorizontalScroll payload={payload} width={240} height={240} key={key} />
+            case 'cta':
+                return <Cta payload={payload} />
             default:
                 return null
         }

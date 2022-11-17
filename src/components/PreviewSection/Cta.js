@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Image = ({ width = 340, height = 50, payload }) => {
-
+    console.log(payload)
     const bgColor = payload?.config?.color !== "" ? payload?.config?.color : 'black'
 
     const redirectHandler = (redirectUrl) => {

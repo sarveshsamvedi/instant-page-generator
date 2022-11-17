@@ -13,8 +13,8 @@ const InstantPage = ({ instantPageId, editVisible }) => {
             .then((data) => {
                 console.log('data: ', data.data);
                 setConfig(JSON.parse(data?.data))
-            }, [])
-    })
+            })
+    }, [])
 
     const editHandler = () => {
         localStorage.setItem('payload', JSON.stringify(config))

@@ -1,4 +1,5 @@
-export const host = "https://3edf-43-247-42-159.ngrok.io/";
+// export const host = "https://3edf-43-247-42-159.ngrok.io/";
+export const host = "http://localhost:3001/";
 
 const get = (serviceUrl) => {
   return fetch(host + serviceUrl, {

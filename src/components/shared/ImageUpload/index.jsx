@@ -3,7 +3,7 @@ import { Button, Upload, message } from "antd";
 import { host } from "../../../utils/serviceHelper";
 import RedirectUrl from "../RedirectUrl";
 
-const ImageUpload = ({ updateConfig, type, sectionKey, assetKey = 0 }) => {
+const ImageUpload = ({ updateConfig, type, sectionKey, assetKey = 0, config }) => {
   const props = {
     name: "image",
     action: `${host}api/upload-image`,
@@ -22,7 +22,7 @@ const ImageUpload = ({ updateConfig, type, sectionKey, assetKey = 0 }) => {
             info?.file?.response?.cdnUrl
           );
         } else
-          updateConfig(type, sectionKey, 0, "", info?.file?.response?.cdnUrl);
+          updateConfig(type, sectionKey, 0, "assets", info?.file?.response?.cdnUrl);
         message.success(`${info.file.name} file uploaded successfully`);
       } else if (info.file.status === "error") {
         message.error(`${info.file.name} file upload failed.`);
@@ -35,7 +35,7 @@ const ImageUpload = ({ updateConfig, type, sectionKey, assetKey = 0 }) => {
       <Upload {...props}>
         <Button icon={<UploadOutlined />}>Click to Upload</Button>
       </Upload>
-      <RedirectUrl updateConfig={updateConfig} type={type} sectionKey={sectionKey} assetKey={assetKey}/>
+      <RedirectUrl updateConfig={updateConfig} type={type} sectionKey={sectionKey} assetKey={assetKey} config={config}/>
     </div>
   );
 };

@@ -54,13 +54,13 @@ const CreateCreative = (props) => {
 	};
 
 	const updateConfig = (type, position = 0, assetPosition = 0, key, value) => {
+		
 		let newConfig = cloneDeep(config)
-
 		// key can be 'assets', 'redirectUrls', 'color', 'ctaText'
 		switch (type) {
 			case 'image-1:1':
 			case 'image-3:2':
-				newConfig[position].assets[0] = value
+				newConfig[position][key][0] = value
 				break
 			case 'horizontalScroll-2:1':
 				newConfig[position][key][assetPosition] = value
@@ -77,13 +77,16 @@ const CreateCreative = (props) => {
 			default:
 				break
 		}
-		console.log(newConfig);
+		console.log("newConfig", newConfig);
 		setConfig(newConfig)
 	}
 
 	const updateSection = (newType, position = 0) => {
 		let newConfig = cloneDeep(config)
+		console.log(newConfig)
 		newConfig[position] = getDefaultSectionConfig[newType]
+
+		console.log("update section", newConfig)
 		setConfig(newConfig)
 	}
 
@@ -110,6 +113,8 @@ const CreateCreative = (props) => {
 					updateConfig={updateConfig}
 					updateSection={updateSection}
 					changeSectionCount={changeSectionCount}
+					config={config}
+					existingInstantPageId = {existingInstantPageId}
 				/>
 			</div>
 			<div className="rightPanel flex">

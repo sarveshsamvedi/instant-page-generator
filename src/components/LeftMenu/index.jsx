@@ -1,8 +1,6 @@
 import { Collapse } from "antd";
 import React, { useState } from "react";
-import DropDown from "../shared/DropDown";
-import ImageUpload from "../shared/ImageUpload";
-import { sectionsList, sectionTypes } from "../../constants";
+import { sectionsList } from "../../constants";
 import Sections from "../shared/Sections";
 
 import { Select } from "antd";
@@ -34,7 +32,7 @@ const LeftMenu = ({ updateConfig, updateSection, changeSectionCount }) => {
         onChange={handleChange}
         options={getSectionsItems(sectionsList)}
       />
-      <Collapse defaultActiveKey={["0"]} className="mt-5">
+      <Collapse defaultActiveKey={["0"]} className="mt-5 overflow-y-auto overflow-x-hidden" style={{height: "calc(100vh - 200px)"}}>
         {sections &&
           [...Array(sections)].map((section, index) => (
             <Panel header={`Section ${index + 1}`} key={index}>

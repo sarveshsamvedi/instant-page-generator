@@ -14,9 +14,9 @@ const CreateCreative = (props) => {
 	const [existingInstantPageId, setInstantPageId] = useState(null);
 
 	useEffect(() => {
-		setConfig(JSON.parse(localStorage.getItem('payload')))
-		setInstantPageId(localStorage.getItem('instantPageId'))
-	}, [])
+        if (localStorage.getItem('payload')) setConfig(JSON.parse(localStorage.getItem('payload')))
+        if (localStorage.getItem('instantPageId')) setInstantPageId(localStorage.getItem('instantPageId'))
+    }, [])
 
 	const getEncodedCreativeHtml = () => {
 		const htmlStr = document.getElementById("instant-page").outerHTML;

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Button } from 'antd';
+import { Link } from "react-router-dom";
 import cloneDeep from 'lodash/cloneDeep';
+import { v4 as uuidv4 } from 'uuid';
 import PreviewSection from "../../PreviewSection";
 import LeftMenu from "../../LeftMenu";
 import { defaultConfig, getDefaultSectionConfig } from "../../../constants";
@@ -8,6 +10,8 @@ import { getEncodedBase64String } from "../../../utils/helpers";
 import { serviceHelper } from "../../../utils/serviceHelper";
 
 const CreateCreative = () => {
+	const [config, setConfig] = useState(cloneDeep(defaultConfig))
+
 	const getEncodedCreativeHtml = () => {
 		const htmlStr = document.getElementById("instant-page").outerHTML;
 		const outputHtml = `
@@ -19,17 +23,29 @@ const CreateCreative = () => {
 					 ${htmlStr}
 				 </body>
 				 </html>`;
-        return getEncodedBase64String(outputHtml);
-  };
+		return getEncodedBase64String(outputHtml);
+	};
 
 	const uploadHtml = () => {
 		const html = getEncodedCreativeHtml();
 		serviceHelper
 			.post("api/upload-html", { data: html })
-			.then((data) => console.log(data));
+			.then((data) => {
+				console.log('CDN URL', data.data.cdnUrl)
+				if (data.status) {
+					const instantPageId = uuidv4()
+					serviceHelper
+						.post(`api/payload/${instantPageId}`, { payload: JSON.stringify(config) })
+						.then(data => {
+							if (data.status) {
+								const currentIds = JSON.parse(localStorage.getItem('instant-page-ids'))
+								const updatedIds = currentIds?.length ? [...currentIds, instantPageId] : [instantPageId]
+								localStorage.setItem('instant-page-ids', JSON.stringify(updatedIds))
+							}
+						})
+				}
+			});
 	};
-
-	const [config, setConfig] = useState(cloneDeep(defaultConfig))
 
 	const updateConfig = (type, position = 0, assetPosition = 0, key, value) => {
 		let newConfig = cloneDeep(config)
@@ -55,7 +71,7 @@ const CreateCreative = () => {
 			default:
 				break
 		}
-    console.log(newConfig);
+		console.log(newConfig);
 		setConfig(newConfig)
 	}
 
@@ -81,6 +97,7 @@ const CreateCreative = () => {
 
 	return (
 		<div className="flex">
+			<Link to="/" className="mt-[50px]"><Button>Home</Button></Link>
 			<div className="leftPanel w-[70%]">
 				<LeftMenu
 					updateConfig={updateConfig}

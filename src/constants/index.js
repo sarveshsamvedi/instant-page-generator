@@ -22,10 +22,7 @@ export const defaultConfig = [
         assets: []
     },
     {
-        type: 'carousel-1:2',
-        config: {
-            autoPlay: true
-        },
+        type: 'horizontalScroll-2:1',
         default: [
             'https://gamewall-pwa.sharechat.com/network/assets/speaker.PNG',
             'https://gamewall-pwa.sharechat.com/network/assets/speaker.PNG',
@@ -34,12 +31,15 @@ export const defaultConfig = [
         assets: []
     },
     {
-        type: 'horizontalScroll-2:1',
+        type: 'carousel-1:2',
+        config: {
+            autoPlay: false
+        },
         default: [
             'https://gamewall-pwa.sharechat.com/network/assets/speaker.PNG',
             'https://gamewall-pwa.sharechat.com/network/assets/speaker.PNG',
             'https://gamewall-pwa.sharechat.com/network/assets/speaker.PNG',
         ],
         assets: []
-    }
+    },
 ]

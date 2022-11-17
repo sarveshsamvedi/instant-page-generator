@@ -1,35 +1,27 @@
 export const defaultConfig = [
   {
     type: "image-1:1",
-    default: ["https://gamewall-pwa.sharechat.com/network/assets/speaker.PNG"],
     assets: ["https://gamewall-pwa.sharechat.com/network/assets/speaker.PNG"],
+    // assets: [],
     redirectUrls: [
       "https://stackoverflow.com/questions/17711146/how-to-open-link-in-a-new-tab-in-html",
     ],
   },
   {
     type: "horizontalScroll-2:1",
-    default: [
-      "https://gamewall-pwa.sharechat.com/network/assets/speaker.PNG",
-      "https://gamewall-pwa.sharechat.com/network/assets/speaker.PNG",
-      "https://gamewall-pwa.sharechat.com/network/assets/speaker.PNG",
-    ],
     assets: [
       "https://gamewall-pwa.sharechat.com/network/assets/speaker.PNG",
       "https://gamewall-pwa.sharechat.com/network/assets/speaker.PNG",
       "https://gamewall-pwa.sharechat.com/network/assets/speaker.PNG",
     ],
-    redirectUrls: [
-      "horizontalScroll ok1",
-      "horizontalScroll ok2",
-      "horizontalScroll ok3"
-    ],
+    // assets: [],
+    redirectUrls: [],
   },
   {
     type: "image-3:2",
-    default: ["https://gamewall-pwa.sharechat.com/network/assets/speaker.PNG"],
     assets: ["https://gamewall-pwa.sharechat.com/network/assets/speaker.PNG"],
-    redirectUrls: ["3:2 Image"],
+    // assets: [],
+    redirectUrls: [],
   },
   {
     type: "cta",
@@ -71,20 +63,20 @@ export const defaultConfig = [
 export const getDefaultSectionConfig = {
   "image-1:1": {
     type: "image-1:1",
-    default: ["https://gamewall-pwa.sharechat.com/network/assets/speaker.PNG"],
-    assets: [],
+    assets: ["https://gamewall-pwa.sharechat.com/network/assets/speaker.PNG"],
+    // assets: [],
     redirectUrls: [
       "https://stackoverflow.com/questions/17711146/how-to-open-link-in-a-new-tab-in-html",
     ],
   },
   "horizontalScroll-2:1": {
     type: "horizontalScroll-2:1",
-    default: [
+    assets: [
       "https://gamewall-pwa.sharechat.com/network/assets/speaker.PNG",
       "https://gamewall-pwa.sharechat.com/network/assets/speaker.PNG",
       "https://gamewall-pwa.sharechat.com/network/assets/speaker.PNG",
     ],
-    assets: [],
+    // assets: [],
     redirectUrls: [],
   },
   cta: {
@@ -94,12 +86,12 @@ export const getDefaultSectionConfig = {
     },
     default: "Go to Website",
     redirectUrls: [],
-    value: "",
+    ctaText: "",
   },
   "image-3:2": {
     type: "image-3:2",
-    default: ["https://gamewall-pwa.sharechat.com/network/assets/speaker.PNG"],
-    assets: [],
+    assets: ["https://gamewall-pwa.sharechat.com/network/assets/speaker.PNG"],
+    // assets: [],
     redirectUrls: [],
   },
 };

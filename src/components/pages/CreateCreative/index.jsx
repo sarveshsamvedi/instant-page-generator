@@ -4,7 +4,7 @@ import cloneDeep from 'lodash/cloneDeep';
 import PreviewSection from "../../PreviewSection";
 import LeftMenu from "../../LeftMenu";
 import { defaultConfig, getDefaultSectionConfig } from "../../../constants";
-import { Base64 } from "js-base64";
+import { getEncodedBase64String } from "../../../utils/helpers";
 import { serviceHelper } from "../../../utils/serviceHelper";
 
 const CreateCreative = () => {
@@ -19,8 +19,8 @@ const CreateCreative = () => {
 					 ${htmlStr}
 				 </body>
 				 </html>`;
-		return Base64.encode(outputHtml);
-	};
+        return getEncodedBase64String(outputHtml);
+  };
 
 	const uploadHtml = () => {
 		const html = getEncodedCreativeHtml();
@@ -55,7 +55,7 @@ const CreateCreative = () => {
 			default:
 				break
 		}
-
+    console.log(newConfig);
 		setConfig(newConfig)
 	}
 
@@ -90,7 +90,7 @@ const CreateCreative = () => {
 				/>
 			</div>
 			<div className="rightPanel flex">
-				<PreviewSection defaultConfig={defaultConfig} />
+				<PreviewSection defaultConfig={config} />
 				<Button className="mt-[50px]" onClick={uploadHtml}>
 					UPLOAD
 				</Button>

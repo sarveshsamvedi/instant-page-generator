@@ -5,7 +5,6 @@ import HorizontalScroll from './HorizontalScroll'
 import Cta from './Cta'
 
 const PreviewSection = ({ defaultConfig }) => {
-    console.log("in preview", defaultConfig)
     const getSelection = (payload, key) => {
         switch (payload.type) {
             case 'image-1:1':
@@ -29,7 +28,7 @@ const PreviewSection = ({ defaultConfig }) => {
         <div className='w-[362px] h-[700px] border-solid border border-gray-400 rounded-lg m-[50px]' id="html-preview">
             <div id='instant-page' className='w-full h-full overflow-y-auto overflow-x-hidden'>
                 {
-                    defaultConfig.map((section, index) => {
+                    defaultConfig && defaultConfig.map((section, index) => {
                         return (
                             <div className='mb-8' key={index}>{getSelection(section, index)}</div>
                         )

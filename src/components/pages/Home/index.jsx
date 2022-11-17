@@ -8,6 +8,8 @@ const Home = () => {
 
   useEffect(() => {
     const ids = JSON.parse(localStorage.getItem('instant-page-ids'))
+    localStorage.removeItem('payload');
+    localStorage.removeItem('instantPageId');
     setCurrIds(ids)
   }, [])
 

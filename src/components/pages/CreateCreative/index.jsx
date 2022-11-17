@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from 'antd';
 import { Link } from "react-router-dom";
 import cloneDeep from 'lodash/cloneDeep';
@@ -9,8 +9,15 @@ import { defaultConfig, getDefaultSectionConfig } from "../../../constants";
 import { getEncodedBase64String } from "../../../utils/helpers";
 import { serviceHelper } from "../../../utils/serviceHelper";
 
-const CreateCreative = () => {
+const CreateCreative = (props) => {
 	const [config, setConfig] = useState(cloneDeep(defaultConfig))
+	const [existingInstantPageId, setInstantPageId] = useState(null);
+
+	useEffect(() => {
+		console.log('JSON.parse ', localStorage.getItem('payload'), JSON.parse(localStorage.getItem('payload')));
+		setConfig(JSON.parse(localStorage.getItem('payload')))
+		setInstantPageId(localStorage.getItem('instantPageId'))
+	}, [])
 
 	const getEncodedCreativeHtml = () => {
 		const htmlStr = document.getElementById("instant-page").outerHTML;
@@ -33,11 +40,11 @@ const CreateCreative = () => {
 			.then((data) => {
 				console.log('CDN URL', data.data.cdnUrl)
 				if (data.status) {
-					const instantPageId = uuidv4()
+					const instantPageId = existingInstantPageId || uuidv4()
 					serviceHelper
 						.post(`api/payload/${instantPageId}`, { payload: JSON.stringify(config) })
 						.then(data => {
-							if (data.status) {
+							if (data.status && !existingInstantPageId) {
 								const currentIds = JSON.parse(localStorage.getItem('instant-page-ids'))
 								const updatedIds = currentIds?.length ? [...currentIds, instantPageId] : [instantPageId]
 								localStorage.setItem('instant-page-ids', JSON.stringify(updatedIds))
@@ -97,8 +104,8 @@ const CreateCreative = () => {
 
 	return (
 		<div className="flex">
-			<Link to="/" className="mt-[50px]"><Button>Home</Button></Link>
 			<div className="leftPanel w-[70%]">
+				<Link to="/" className="ml-4 !mt-4"><Button>Home</Button></Link>
 				<LeftMenu
 					updateConfig={updateConfig}
 					updateSection={updateSection}

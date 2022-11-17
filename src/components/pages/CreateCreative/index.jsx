@@ -79,10 +79,9 @@ const CreateCreative = () => {
 		}
 	}
 
-
 	return (
 		<div className="flex">
-			<div className="leftPanel">
+			<div className="leftPanel w-[70%]">
 				<LeftMenu
 					updateConfig={updateConfig}
 					updateSection={updateSection}

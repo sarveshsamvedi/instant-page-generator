@@ -28,7 +28,7 @@ const Sections = ({ updateConfig, updateSection, sectionKey }) => {
       {sectionType === "cta" && <div>CTA Component</div>}
 
       {sectionType === "horizontalScroll-2:1" && (
-        <HorizontalScroll />
+        <HorizontalScroll updateConfig={updateConfig} type={sectionType} sectionKey={sectionKey}/>
       )}
     </>
   );

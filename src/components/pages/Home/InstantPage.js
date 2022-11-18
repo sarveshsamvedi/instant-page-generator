@@ -15,10 +15,7 @@ const InstantPage = ({ instantPageId }) => {
                 setConfig(JSON.parse(data?.data))
             })
             .catch(err => {
-                Modal.error({
-                    title: '☠️ Something Went Wrong ☠️',
-                    content: 'Please Try Again!',
-                });
+                console.log('err: ', err);
             })
     }, [instantPageId])
 

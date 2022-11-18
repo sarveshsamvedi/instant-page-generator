@@ -14,13 +14,11 @@ export const defaultConfig = [
       "https://gamewall-pwa.sharechat.com/network/assets/speaker.PNG",
       "https://gamewall-pwa.sharechat.com/network/assets/speaker.PNG",
     ],
-    // assets: [],
     redirectUrls: [],
   },
   {
     type: "image-3:2",
     assets: ["https://gamewall-pwa.sharechat.com/network/assets/speaker.PNG"],
-    // assets: [],
     redirectUrls: [],
   },
   {
@@ -28,8 +26,7 @@ export const defaultConfig = [
     config: {
       color: "",
     },
-    default: "Go to Website",
-    redirectUrls: ["CTA Click URL"],
+    redirectUrls: [""],
     ctaText: "",
   },
   // {
@@ -64,7 +61,6 @@ export const getDefaultSectionConfig = {
   "image-1:1": {
     type: "image-1:1",
     assets: ["https://gamewall-pwa.sharechat.com/network/assets/speaker.PNG"],
-    // assets: [],
     redirectUrls: [
       "https://stackoverflow.com/questions/17711146/how-to-open-link-in-a-new-tab-in-html",
     ],
@@ -76,7 +72,6 @@ export const getDefaultSectionConfig = {
       "https://gamewall-pwa.sharechat.com/network/assets/speaker.PNG",
       "https://gamewall-pwa.sharechat.com/network/assets/speaker.PNG",
     ],
-    // assets: [],
     redirectUrls: [],
   },
   cta: {
@@ -84,14 +79,12 @@ export const getDefaultSectionConfig = {
     config: {
       color: "",
     },
-    default: "Go to Website",
     redirectUrls: [],
     ctaText: "",
   },
   "image-3:2": {
     type: "image-3:2",
     assets: ["https://gamewall-pwa.sharechat.com/network/assets/speaker.PNG"],
-    // assets: [],
     redirectUrls: [],
   },
 };

@@ -14,9 +14,9 @@ const CreateCreative = (props) => {
 	const [existingInstantPageId, setInstantPageId] = useState(null);
 
 	useEffect(() => {
-		if (localStorage.getItem('payload')) setConfig(JSON.parse(localStorage.getItem('payload')))
-		if (localStorage.getItem('instantPageId')) setInstantPageId(localStorage.getItem('instantPageId'))
-	}, [])
+        if (localStorage.getItem('payload')) setConfig(JSON.parse(localStorage.getItem('payload')))
+        if (localStorage.getItem('instantPageId')) setInstantPageId(localStorage.getItem('instantPageId'))
+    }, [])
 
 	const getAllElmsIds = () => {
 		const allIds = []
@@ -80,9 +80,53 @@ const CreateCreative = (props) => {
             sendEvent("INSTANT_PAGE_VIEW", instantPageId)
             attachEventListners()
         })
-    </script>
-		</body>
-		</html>`;
+		</script>
+            </html>
+            <script>
+            //div
+                convertToVwByType('div');
+                
+                //img
+                convertToVwByType('img');
+                
+                //button
+                convertToVwByType('button');
+                
+                //li
+                convertToVwByType('li');
+                                
+                function convertToVwByType(type){
+                    //type -> div, button, img
+                    const allElem = document.querySelectorAll(type);
+        
+                    if(!allElem || allElem.length==0)
+                            return;
+                
+                    allElem.forEach((curElem)=>{
+                        convertPxStylesToVw(curElem);
+                    });
+                }                
+                
+                function convertPxStylesToVw(element){
+                    const computedStyles = getComputedStyle(element);
+                
+                    Object.keys(computedStyles).forEach((cur)=>{
+                        const curValue = computedStyles[cur];
+                        if(curValue.slice(-2) === 'px'){
+                            const pxValue = (Number)(curValue.substring(0, curValue.length-2));
+                            const vwValue = convertPXToVW(pxValue);
+                
+                            element.style[cur] = vwValue+"vw";
+                
+                        }
+                    });
+                
+                }                
+                function convertPXToVW(px) {
+                    return px/3.6;
+                }
+           </script>
+		`;
 		console.log('outputHtml: ', outputHtml);
 		return getEncodedBase64String(outputHtml);
 	};
@@ -109,8 +153,8 @@ const CreateCreative = (props) => {
 	};
 
 	const updateConfig = (type, position = 0, assetPosition = 0, key, value) => {
+		
 		let newConfig = cloneDeep(config)
-
 		// key can be 'assets', 'redirectUrls', 'color', 'ctaText'
 		switch (type) {
 			case 'image-1:1':
@@ -132,7 +176,7 @@ const CreateCreative = (props) => {
 			default:
 				break
 		}
-		console.log(newConfig);
+		console.log("newConfig", newConfig);
 		setConfig(newConfig)
 	}
 
@@ -164,6 +208,8 @@ const CreateCreative = (props) => {
 					updateConfig={updateConfig}
 					updateSection={updateSection}
 					changeSectionCount={changeSectionCount}
+					config={config}
+					existingInstantPageId = {existingInstantPageId}
 				/>
 			</div>
 			<div className="rightPanel flex">

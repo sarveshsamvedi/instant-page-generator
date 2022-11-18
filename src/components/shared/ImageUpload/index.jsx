@@ -3,17 +3,15 @@ import { Button, Upload, message } from "antd";
 import { host } from "../../../utils/serviceHelper";
 import RedirectUrl from "../RedirectUrl";
 
-const ImageUpload = ({ updateConfig, type, sectionKey, assetKey = 0 }) => {
+const ImageUpload = ({ updateConfig, type, sectionKey, assetKey = 0, config }) => {
   const props = {
     name: "image",
     action: `${host}api/upload-image`,
     onChange(info) {
       if (info.file.status !== "uploading") {
-        console.log(info.file, info.fileList);
       }
       if (info.file.status === "done") {
         if (type === "horizontalScroll-2:1") {
-          console.log(assetKey);
           updateConfig(
             type,
             sectionKey,
@@ -32,7 +30,7 @@ const ImageUpload = ({ updateConfig, type, sectionKey, assetKey = 0 }) => {
 
   return (
     <div className="flex flex-row">
-      <Upload {...props}>
+      <Upload {...props} maxCount={1} className="mr-4">
         <Button icon={<UploadOutlined />}>Click to Upload</Button>
       </Upload>
       <RedirectUrl updateConfig={updateConfig} type={type} sectionKey={sectionKey} assetKey={assetKey} />

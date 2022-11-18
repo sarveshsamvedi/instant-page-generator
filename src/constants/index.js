@@ -81,14 +81,14 @@ export const getDefaultSectionConfig = {
   cta: {
     type: "cta",
     config: {
-      color: "",
+      color: "#9146EB",
     },
     redirectUrls: [],
     ctaText: "Go To Website",
   },
   "image-3:2": {
     type: "image-3:2",
-    assets: ["https://gamewall-pwa.sharechat.com/innovation/instant-pages/apple/apple2-32.png"],
+    assets: ["https://gamewall-pwa.sharechat.com/innovation/instant-pages/apple/apple-32.png"],
     redirectUrls: [],
   },
 };

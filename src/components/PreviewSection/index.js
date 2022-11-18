@@ -30,7 +30,7 @@ const PreviewSection = ({ defaultConfig }) => {
                 {
                     defaultConfig && defaultConfig.map((section, index) => {
                         return (
-                            <div className='mb-8' key={index}>{getSelection(section, index)}</div>
+                            <div className='' key={index}>{getSelection(section, index)}</div>
                         )
                     })
                 }

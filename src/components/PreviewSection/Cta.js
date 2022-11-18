@@ -11,7 +11,7 @@ const Image = ({ width = 340, height = 50, payload, id }) => {
     }
 
     return (
-        <div id={id} data-lp={lpUrl} style={{ display: 'flex', justifyContent: 'center' }} onClick={() => redirectHandler(payload?.redirectUrls?.[0])}>
+        <div className="my-4" id={id} data-lp={lpUrl} style={{ display: 'flex', justifyContent: 'center' }} onClick={() => redirectHandler(payload?.redirectUrls?.[0])}>
             <div style={{
                 width: `${width}px`,
                 height: `${height}px`,

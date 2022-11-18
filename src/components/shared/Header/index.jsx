@@ -9,7 +9,7 @@ const HeaderComp = () => {
       className="border-b border-gray-200 flex flex-row justify-between items-center pr-6 pl-8"
     >
       <div className="leftBlock">
-        Instant Page Generator 🎑
+        Instant Page Generator ⏱
       </div>
     </Header>
   );

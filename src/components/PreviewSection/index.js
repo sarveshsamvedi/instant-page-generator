@@ -25,7 +25,7 @@ const PreviewSection = ({ defaultConfig }) => {
     }
 
     return (
-        <div className='w-[362px] h-[750px] border-solid border border-gray-400 rounded-lg m-[50px]' id="html-preview">
+        <div className='w-[362px] h-[750px] border-solid border border-gray-400 rounded-lg my-[25px] mx-[50px]' id="html-preview">
             <div id='instant-page' className='w-full h-full overflow-y-auto overflow-x-hidden'>
                 {
                     defaultConfig && defaultConfig.map((section, index) => {

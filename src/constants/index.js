@@ -27,7 +27,7 @@ export const defaultConfig = [
       color: "",
     },
     redirectUrls: [""],
-    ctaText: "",
+    ctaText: "Go To Website",
   },
   // {
   //     type: 'carousel-1:2',
@@ -80,7 +80,7 @@ export const getDefaultSectionConfig = {
       color: "",
     },
     redirectUrls: [],
-    ctaText: "",
+    ctaText: "Go To Website",
   },
   "image-3:2": {
     type: "image-3:2",

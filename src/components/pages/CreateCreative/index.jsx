@@ -228,7 +228,7 @@ const CreateCreative = (props) => {
 					existingInstantPageId={existingInstantPageId}
 				/>
 			</div>
-			<div className="rightPanel flex">
+			<div className="rightPanel flex" style={{margin: "0 4vw"}}>
 				<PreviewSection defaultConfig={config} />
 				<Button className="mt-[50px]" onClick={uploadHtml}>
 					UPLOAD

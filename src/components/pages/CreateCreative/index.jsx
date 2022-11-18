@@ -46,9 +46,9 @@ const CreateCreative = (props) => {
 		<body>
 		${htmlStr}
 		<script>
-        const listOfIds = ${allElmsIds}
-		const instantPageId = ${instantId}
-		const apiUrl = ${apiUrl}
+        const listOfIds = ["0_image-1:1","01_horizontalScroll-2:1","11_horizontalScroll-2:1","21_horizontalScroll-2:1","2_image-3:2","3_cta"]
+		const instantPageId = "b1aa4d96-7981-45d6-82f8-60a52a74f8e1"
+		const apiUrl = "https://8dfc-2405-201-300b-4aee-bd27-2aec-45f0-d739.in.ngrok.io/api/event/b1aa4d96-7981-45d6-82f8-60a52a74f8e1"
         function sendEvent(eventName, data) {
             const payload = {
                 eventName,
@@ -79,53 +79,63 @@ const CreateCreative = (props) => {
         document.addEventListener('DOMContentLoaded', function () {
             sendEvent("INSTANT_PAGE_VIEW", instantPageId)
             attachEventListners()
-        })
-		</script>
-            </html>
-            <script>
-            //div
-                convertToVwByType('div');
-                
-                //img
-                convertToVwByType('img');
-                
-                //button
-                convertToVwByType('button');
-                
-                //li
-                convertToVwByType('li');
-                                
-                function convertToVwByType(type){
-                    //type -> div, button, img
-                    const allElem = document.querySelectorAll(type);
-        
-                    if(!allElem || allElem.length==0)
-                            return;
-                
-                    allElem.forEach((curElem)=>{
-                        convertPxStylesToVw(curElem);
-                    });
-                }                
-                
-                function convertPxStylesToVw(element){
-                    const computedStyles = getComputedStyle(element);
-                
-                    Object.keys(computedStyles).forEach((cur)=>{
-                        const curValue = computedStyles[cur];
-                        if(curValue.slice(-2) === 'px'){
-                            const pxValue = (Number)(curValue.substring(0, curValue.length-2));
-                            const vwValue = convertPXToVW(pxValue);
-                
-                            element.style[cur] = vwValue+"vw";
-                
-                        }
-                    });
-                
-                }                
-                function convertPXToVW(px) {
-                    return px/3.6;
-                }
-           </script>
+        });
+
+        function convert(){
+        	convertToVwByType('div');
+			
+			//img
+			convertToVwByType('img');
+			
+			//button
+			convertToVwByType('button');
+			
+			//li
+			convertToVwByType('li');
+			
+			
+			function convertToVwByType(type){
+				//type -> div, button, img
+				const allElem = document.querySelectorAll(type);
+	
+				if(!allElem || allElem.length==0)
+						return;
+			
+				allElem.forEach((curElem)=>{
+					convertPxStylesToVw(curElem);
+				});
+			}
+			
+			
+			function convertPxStylesToVw(element){
+				const computedStyles = getComputedStyle(element);
+			
+				Object.keys(computedStyles).forEach((cur)=>{
+					const curValue = computedStyles[cur];
+					if(curValue.slice(-2) === 'px'){
+						const pxValue = (Number)(curValue.substring(0, curValue.length-2));
+						const vwValue = convertPXToVW(pxValue);
+			
+						element.style[cur] = vwValue+"vw";
+			
+					}
+				});
+			
+			}
+			
+			function convertPXToVW(px) {
+				// return px/3.6;
+					return px * (100 / document.documentElement.clientWidth);
+
+			}
+        }
+
+        setTimeout(()=> {
+        	convert();
+        }, 1000);        
+        </script>
+        </body>
+       	</html>
 		`;
 		console.log('outputHtml: ', outputHtml);
 		return getEncodedBase64String(outputHtml);

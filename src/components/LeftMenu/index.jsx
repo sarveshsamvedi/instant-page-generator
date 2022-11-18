@@ -27,7 +27,7 @@ const LeftMenu = ({ updateConfig, updateSection, changeSectionCount, config, exi
   }, [config])
 
   return (
-    <div className="w-[70%] p-4 mt-[50px]">
+    <div className="w-[100%] p-4 mt-[50px]">
       <Select
         className="w-[30%]"
         placeholder="Select number of sections"

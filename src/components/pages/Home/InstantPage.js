@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from "react-router-dom";
-import { Button } from "antd";
+import { Button, Modal } from "antd";
 import PreviewSection from '../../PreviewSection'
 import { serviceHelper } from "../../../utils/serviceHelper";
 
@@ -13,6 +13,12 @@ const InstantPage = ({ instantPageId }) => {
             .then((data) => {
                 console.log('data: ', data.data);
                 setConfig(JSON.parse(data?.data))
+            })
+            .catch(err => {
+                Modal.error({
+                    title: '☠️ Something Went Wrong ☠️',
+                    content: 'Please Try Again!',
+                });
             })
     }, [instantPageId])
 

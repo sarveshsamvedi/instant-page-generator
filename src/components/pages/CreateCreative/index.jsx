@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button } from 'antd';
+import { Button, Modal } from 'antd';
 import { Link } from "react-router-dom";
 import cloneDeep from 'lodash/cloneDeep';
 import { v4 as uuidv4 } from 'uuid';
@@ -14,9 +14,9 @@ const CreateCreative = (props) => {
 	const [existingInstantPageId, setInstantPageId] = useState(null);
 
 	useEffect(() => {
-        if (localStorage.getItem('payload')) setConfig(JSON.parse(localStorage.getItem('payload')))
-        if (localStorage.getItem('instantPageId')) setInstantPageId(localStorage.getItem('instantPageId'))
-    }, [])
+		if (localStorage.getItem('payload')) setConfig(JSON.parse(localStorage.getItem('payload')))
+		if (localStorage.getItem('instantPageId')) setInstantPageId(localStorage.getItem('instantPageId'))
+	}, [])
 
 	const getAllElmsIds = () => {
 		const allIds = []
@@ -141,19 +141,35 @@ const CreateCreative = (props) => {
 				if (data.status) {
 					serviceHelper
 						.post(`api/payload/${instantPageId}`, { payload: JSON.stringify(config) })
-						.then(data => {
-							if (data.status && !existingInstantPageId) {
+						.then(res => {
+							Modal.success({
+								title: 'Woohoo! 🥳 Your Instant Page Has Been Created',
+								content: data?.data?.cdnUrl ? `CDN URL: ${data?.data?.cdnUrl}` : 'Expore the Home Section to View Your Instant Pages!',
+							});
+							if (res.status && !existingInstantPageId) {
 								const currentIds = JSON.parse(localStorage.getItem('instant-page-ids'))
 								const updatedIds = currentIds?.length ? [...currentIds, instantPageId] : [instantPageId]
 								localStorage.setItem('instant-page-ids', JSON.stringify(updatedIds))
 							}
 						})
+						.catch(err => {
+							Modal.error({
+								title: '☠️ Something Went Wrong ☠️',
+								content: 'Please Try Again!',
+							});
+						})
 				}
-			});
+			})
+			.catch(err => {
+				Modal.error({
+					title: '☠️ Something Went Wrong ☠️',
+					content: 'Please Try Again!',
+				});
+			})
 	};
 
 	const updateConfig = (type, position = 0, assetPosition = 0, key, value) => {
-		
+
 		let newConfig = cloneDeep(config)
 		// key can be 'assets', 'redirectUrls', 'color', 'ctaText'
 		switch (type) {
@@ -209,7 +225,7 @@ const CreateCreative = (props) => {
 					updateSection={updateSection}
 					changeSectionCount={changeSectionCount}
 					config={config}
-					existingInstantPageId = {existingInstantPageId}
+					existingInstantPageId={existingInstantPageId}
 				/>
 			</div>
 			<div className="rightPanel flex">

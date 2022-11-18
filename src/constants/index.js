@@ -2,9 +2,7 @@ export const defaultConfig = [
   {
     type: "image-1:1",
     assets: ["https://gamewall-pwa.sharechat.com/innovation/instant-pages/apple/apple-11.png"],
-    redirectUrls: [
-      "https://stackoverflow.com/questions/17711146/how-to-open-link-in-a-new-tab-in-html",
-    ],
+    redirectUrls: [],
   },
   {
     type: "image-3:2",
@@ -65,9 +63,7 @@ export const getDefaultSectionConfig = {
   "image-1:1": {
     type: "image-1:1",
     assets: ["https://gamewall-pwa.sharechat.com/innovation/instant-pages/apple/apple-11.png"],
-    redirectUrls: [
-      "https://stackoverflow.com/questions/17711146/how-to-open-link-in-a-new-tab-in-html",
-    ],
+    redirectUrls: [],
   },
   "horizontalScroll-2:1": {
     type: "horizontalScroll-2:1",

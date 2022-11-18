@@ -46,9 +46,9 @@ const CreateCreative = (props) => {
 		<body>
 		${htmlStr}
 		<script>
-        const listOfIds = ["0_image-1:1","01_horizontalScroll-2:1","11_horizontalScroll-2:1","21_horizontalScroll-2:1","2_image-3:2","3_cta"]
-		const instantPageId = "b1aa4d96-7981-45d6-82f8-60a52a74f8e1"
-		const apiUrl = "https://8dfc-2405-201-300b-4aee-bd27-2aec-45f0-d739.in.ngrok.io/api/event/b1aa4d96-7981-45d6-82f8-60a52a74f8e1"
+        const listOfIds = ${allElmsIds}
+		const instantPageId = ${instantId}
+		const apiUrl = ${apiUrl}
         function sendEvent(eventName, data) {
             const payload = {
                 eventName,
@@ -222,7 +222,7 @@ const CreateCreative = (props) => {
 			setConfig(newConfig.slice(0, newCount))
 		} else {
 			for (let i = 0; i < newCount - oldCount; i++) {
-				newConfig.push(getDefaultSectionConfig['image-1:1'])
+				newConfig.push(getDefaultSectionConfig['horizontalScroll-2:1'])
 			}
 			setConfig(newConfig.slice(0, newCount))
 		}

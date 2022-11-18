@@ -1,30 +1,34 @@
 export const defaultConfig = [
   {
     type: "image-1:1",
-    assets: ["https://gamewall-pwa.sharechat.com/network/assets/speaker.PNG"],
-    // assets: [],
+    assets: ["https://gamewall-pwa.sharechat.com/innovation/instant-pages/apple/apple-11.png"],
     redirectUrls: [
       "https://stackoverflow.com/questions/17711146/how-to-open-link-in-a-new-tab-in-html",
     ],
   },
   {
+    type: "image-3:2",
+    assets: ["https://gamewall-pwa.sharechat.com/innovation/instant-pages/apple/apple2-32.png"],
+    redirectUrls: [],
+  },
+  {
     type: "horizontalScroll-2:1",
     assets: [
-      "https://gamewall-pwa.sharechat.com/network/assets/speaker.PNG",
-      "https://gamewall-pwa.sharechat.com/network/assets/speaker.PNG",
-      "https://gamewall-pwa.sharechat.com/network/assets/speaker.PNG",
+      "https://gamewall-pwa.sharechat.com/innovation/instant-pages/apple/apple6-11.png",
+      "https://gamewall-pwa.sharechat.com/innovation/instant-pages/apple/apple8-11.png",
+      "https://gamewall-pwa.sharechat.com/innovation/instant-pages/apple/apple3-11.png",
     ],
     redirectUrls: [],
   },
   {
     type: "image-3:2",
-    assets: ["https://gamewall-pwa.sharechat.com/network/assets/speaker.PNG"],
+    assets: ["https://gamewall-pwa.sharechat.com/innovation/instant-pages/apple/apple-32.png"],
     redirectUrls: [],
   },
   {
     type: "cta",
     config: {
-      color: "",
+      color: "#9146EB",
     },
     redirectUrls: [""],
     ctaText: "Go To Website",
@@ -60,7 +64,7 @@ export const defaultConfig = [
 export const getDefaultSectionConfig = {
   "image-1:1": {
     type: "image-1:1",
-    assets: ["https://gamewall-pwa.sharechat.com/network/assets/speaker.PNG"],
+    assets: ["https://gamewall-pwa.sharechat.com/innovation/instant-pages/apple/apple-11.png"],
     redirectUrls: [
       "https://stackoverflow.com/questions/17711146/how-to-open-link-in-a-new-tab-in-html",
     ],
@@ -68,9 +72,9 @@ export const getDefaultSectionConfig = {
   "horizontalScroll-2:1": {
     type: "horizontalScroll-2:1",
     assets: [
-      "https://gamewall-pwa.sharechat.com/network/assets/speaker.PNG",
-      "https://gamewall-pwa.sharechat.com/network/assets/speaker.PNG",
-      "https://gamewall-pwa.sharechat.com/network/assets/speaker.PNG",
+      "https://gamewall-pwa.sharechat.com/innovation/instant-pages/apple/apple6-11.png",
+      "https://gamewall-pwa.sharechat.com/innovation/instant-pages/apple/apple8-11.png",
+      "https://gamewall-pwa.sharechat.com/innovation/instant-pages/apple/apple3-11.png",
     ],
     redirectUrls: [],
   },
@@ -84,12 +88,12 @@ export const getDefaultSectionConfig = {
   },
   "image-3:2": {
     type: "image-3:2",
-    assets: ["https://gamewall-pwa.sharechat.com/network/assets/speaker.PNG"],
+    assets: ["https://gamewall-pwa.sharechat.com/innovation/instant-pages/apple/apple2-32.png"],
     redirectUrls: [],
   },
 };
 
-export const sectionsList = [3, 4, 5];
+export const sectionsList = [3, 4, 5, 6, 7, 8];
 
 export const sectionTypes = [
   {

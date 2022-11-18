@@ -2,6 +2,7 @@ export const defaultConfig = [
   {
     type: "image-1:1",
     assets: ["https://gamewall-pwa.sharechat.com/network/assets/speaker.PNG"],
+    // assets: [],
     redirectUrls: [
       "https://stackoverflow.com/questions/17711146/how-to-open-link-in-a-new-tab-in-html",
     ],

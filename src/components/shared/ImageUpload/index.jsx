@@ -33,7 +33,7 @@ const ImageUpload = ({ updateConfig, type, sectionKey, assetKey = 0, config }) =
       <Upload {...props} maxCount={1} className="mr-4">
         <Button icon={<UploadOutlined />}>Click to Upload</Button>
       </Upload>
-      <RedirectUrl updateConfig={updateConfig} type={type} sectionKey={sectionKey} assetKey={assetKey} config={config}/>
+      <RedirectUrl updateConfig={updateConfig} type={type} sectionKey={sectionKey} assetKey={assetKey} />
     </div>
   );
 };
